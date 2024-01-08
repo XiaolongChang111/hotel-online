@@ -33,7 +33,7 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb+srv://asdf:asdf@test.kgyv4w
 
 
 app.use(function(req, res) {
-    res.sendFile(path.join(__dirname, '../build/index.html'));
+    res.sendFile(path.join(__dirname, './build/index.html'));
 })
 
 let sockets = {};
