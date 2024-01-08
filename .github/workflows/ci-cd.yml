@@ -39,11 +39,3 @@ jobs:
         cd backend
         npm install
         npm run test
-        
-    - name: Deploy to Render
-      env:
-        RENDER_API_TOKEN: ${{ secrets.RENDER_API_TOKEN }}
-      run: |
-        cd backend
-        render login --token $RENDER_API_TOKEN
-        render deploy
