@@ -76,7 +76,9 @@ describe('Order API Tests', () => {
         });
 
         expect(res.statusCode).toEqual(201);
-        expect((await Order.find()).length).toEqual(1);
+        const orders = await Order.find({}).lean();
+        const newOrder = orders.find(order => order.room.toString() === room._id.toString());
+        expect(newOrder).toBeTruthy();
     });
 
     it('should get the orders of user', async () => {

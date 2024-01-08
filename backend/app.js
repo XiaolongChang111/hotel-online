@@ -28,7 +28,6 @@ const orderRoute = require('./routes/order.route');
 app.use('/api/users', userRoute);
 app.use('/api/rooms', roomRoute);
 app.use('/api/orders', orderRoute);
-console.log(`Mongodb URL: ${process.env.MONGODB_URL}`)
 mongoose.connect(process.env.MONGODB_URL || 'mongodb+srv://asdf:asdf@test.kgyv4wt.mongodb.net/hotel');
 
 
