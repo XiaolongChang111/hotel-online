@@ -8,15 +8,28 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    environment: Development
+    environment: Production
     steps:
     - uses: actions/checkout@v2
 
+    - name: Create frontend env file
+      run: |
+        cd frontend
+        touch .env
+        echo  REACT_APP_API_URL=${{ secrets.API_URL }} >> .env
     - name: Build React App
       run: |
         cd frontend
         npm install
         npm run build
+
+    - name: Create backend env file
+      run: |
+        cd backend
+        touch .env
+        echo JWT_SECRET=${{ secrets.JWT_SECRET }} >> .env  
+        echo ADMIN_EMAIL=${{ secrets.ADMIN_EMAIL }} >> .env  
+        echo MONGODB_URL=${{ secrets.MONGODB_URL }} >> .env    
 
     - name: Move Frontend Build to Backend
       run: |
