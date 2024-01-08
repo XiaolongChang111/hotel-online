@@ -1,0 +1,35 @@
+name: Node.js CI/CD
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Build React App
+      run: |
+        cd frontend
+        npm install
+        npm run build
+
+    - name: Move Frontend Build to Backend
+      run: |
+        mv frontend/build backend/build
+    - name: Install and Build Backend
+      run: |
+        cd backend
+        npm install
+        npm run test
+        
+    - name: Deploy to Render
+      env:
+        RENDER_API_TOKEN: ${{ secrets.RENDER_API_TOKEN }}
+      run: |
+        cd backend
+        render login --token $RENDER_API_TOKEN
+        render deploy
