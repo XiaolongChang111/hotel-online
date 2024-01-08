@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import http from '../http'; 
 import { useAuth } from '../Auth';
@@ -66,7 +66,7 @@ const SignIn = () => {
         </div>
         <button type="submit" className="btn btn-primary">Sign In</button>
         <p className="mt-3 alert alert-primary">
-          Don't have an account? <a href="/register">Sign Up</a>
+          Don't have an account? <Link to="/register">Sign Up</Link>
         </p>
       </form>
     </div>

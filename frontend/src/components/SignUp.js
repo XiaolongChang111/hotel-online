@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import http from '../http'
 
@@ -90,7 +90,7 @@ const SignUp = () => {
         </div>
         <button type="submit" className="btn btn-primary">Sign Up</button>
         <p className="mt-3 alert alert-primary">
-          Already have an account? <a href="/login">Sign In</a>
+          Already have an account? <Link to="/login">Sign In</Link>
         </p>
       </form>
     </div>
