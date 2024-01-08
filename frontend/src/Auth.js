@@ -14,6 +14,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setAuthed(false);
+    localStorage.removeItem('token');
   };
 
   const value = { authed, login, logout, user };
@@ -25,7 +26,9 @@ export const AuthProvider = ({ children }) => {
       http.get('/api/users/me')
       .then(response => {
         setUser(response.data);
-      })
+      }).catch(error => {
+        console.log(error);
+      });
     }
   }, [reload]);
 

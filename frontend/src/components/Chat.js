@@ -12,7 +12,7 @@ const ChatComponent = () => {
     const [chatMessages, setChatMessages] = useState([]);
     const { user } = useAuth();
     const [target, setTarget] = useState('');
-
+    const [reloadUserNames, setReloadUsernames] = useState(false);
     useEffect(() => {
         let newSocket = null;
         if (user) {
@@ -27,6 +27,9 @@ const ChatComponent = () => {
             newSocket.on('chat-message', msg => {
                 console.log(msg);
                 setChatMessages(prev => [...prev, JSON.parse(msg)]);
+                if (user?.isAdmin) {
+                    setReloadUsernames(!reloadUserNames);
+                }
             });
         }
 
